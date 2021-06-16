@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "830056448430",
+    "firebase_url": "https://sharelock-de728-default-rtdb.firebaseio.com",
+    "project_id": "sharelock-de728",
+    "storage_bucket": "sharelock-de728.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830056448430:android:a10af3a989d175adf2c83f",
+        "android_client_info": {
+          "package_name": "com.companyname.androidauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830056448430-2mpacr017347275pbse6aqlgc8voirqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAl7gXvYnU7zbNe4ITzYOMNykHuogAJCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830056448430-2mpacr017347275pbse6aqlgc8voirqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830056448430:android:c4b1f04ffe77262ff2c83f",
+        "android_client_info": {
+          "package_name": "com.companyname.sharelock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830056448430-2mpacr017347275pbse6aqlgc8voirqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAl7gXvYnU7zbNe4ITzYOMNykHuogAJCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830056448430-2mpacr017347275pbse6aqlgc8voirqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830056448430:android:526a0dc0dfe1e241f2c83f",
+        "android_client_info": {
+          "package_name": "com.companyname.sharelockiot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830056448430-2mpacr017347275pbse6aqlgc8voirqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAl7gXvYnU7zbNe4ITzYOMNykHuogAJCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830056448430-2mpacr017347275pbse6aqlgc8voirqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

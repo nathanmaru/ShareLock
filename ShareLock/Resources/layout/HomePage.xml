@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="Home Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:id="@+id/HomeNameBtn" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:inputType="text"
+        android:visibility="gone"
+        android:id="@+id/homenameTxt"
+        android:hint="Enter House Name"/>
+    <Button
+        android:text="Save"
+        android:layout_width="100dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/linearLayout6" >
+            
+                <TextView
+                    android:text="Family Members:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView4" />
+         
+			    <ImageView
+				    android:src="@android:drawable/ic_menu_gallery"
+				    android:layout_width="40dp"
+				    android:layout_height="40dp"
+				    android:layout_alignParentRight="true"
+				    android:id="@+id/addMember"
+				     />
+        
+    </RelativeLayout>
+    
+   
+        <androidx.recyclerview.widget.RecyclerView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:paddingLeft="10dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/familyMembersRecyclerView"
+        android:scrollbars="horizontal"
+       />
+    
+
+    
+    
+
+</LinearLayout>
