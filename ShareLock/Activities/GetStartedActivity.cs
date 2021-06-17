@@ -39,7 +39,7 @@ namespace ShareLock.Activities
 
         private void SignUpRedirect_Click(object sender, EventArgs e)
         {
-            var intent = new Intent(this, typeof(LoginActivity));
+            var intent = new Intent(this, typeof(SignUpActivity));
             StartActivity(intent);
         }
     }

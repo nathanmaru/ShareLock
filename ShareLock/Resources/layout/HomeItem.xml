@@ -8,15 +8,17 @@
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="80dp"
-        android:id="@+id/imageView1" />
+        android:minHeight="100dp"
+        android:id="@+id/homeImage" />
+
     <TextView
-        android:text="DoorLock Name"
-        android:textSize="20sp"
-        android:gravity="center"
+        android:text="Home Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/doorNameTxt" />
+        android:gravity="center"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/homeNameTxt" />
 
 
 </LinearLayout>

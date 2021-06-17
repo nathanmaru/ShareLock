@@ -36,37 +36,77 @@
 	</RelativeLayout>
     
     ///HomePage
-    <include
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/HomeLayout">
+        <include
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="70dp"
-        
+        android:id="@+id/HomeInclude"
             layout="@layout/HomePage"/>
+
+    </LinearLayout>
+    
     //Visit Page 
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="70dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone"
-            layout="@layout/VisitsPage"/>
+        android:id="@+id/VisitLayout">
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            
+                layout="@layout/VisitsPage"/>
+    </LinearLayout>
     //Payments Page
-    <include
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="70dp"
+        android:layout_height="wrap_content"
         android:visibility="gone"
-            layout="@layout/PaymentLayout"/>
+        android:id="@+id/PaymentLayout">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            
+                layout="@layout/paymentlayout"/>
+    </LinearLayout>
     //Profile Page
-    <include
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="70dp"
+        android:layout_height="wrap_content"
         android:visibility="gone"
-            layout="@layout/profilelayout"/>
+        android:id="@+id/ProfileLayout">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            
+                layout="@layout/profilelayout"/>
+    </LinearLayout>
+    
+    //Notification Page
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/NotificationLayout">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            
+                layout="@layout/NotificationsLayout"/>
+    </LinearLayout>
         
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -23,11 +23,19 @@ namespace ShareLock
         RecyclerView memberRecyle;
         MemberAdapter memberAdapter;
         List<Members> memberList;
-        TextView homeBtn;
-        EditText homeEdit;
         ImageView addMemberBtn;
         AddMemberFragment addmemberFragment;
         MemberListener memberListener;
+
+        LinearLayout HomePage;
+        LinearLayout VisitsPage;
+        LinearLayout PaymentPage;
+        LinearLayout ProfilePage;
+        LinearLayout NotificationPage;
+
+        ImageView profileButton;
+        ImageView notificationButton;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -35,18 +43,56 @@ namespace ShareLock
             SetContentView(Resource.Layout.activity_main);
             memberRecyle = (RecyclerView)FindViewById(Resource.Id.familyMembersRecyclerView);
             textMessage = FindViewById<TextView>(Resource.Id.message);
-            homeBtn = (TextView)FindViewById(Resource.Id.HomeNameBtn);
-            homeEdit =(EditText)FindViewById(Resource.Id.homenameTxt);
+            
+            
             addMemberBtn = (ImageView)FindViewById(Resource.Id.addMember);
+
+            ConnectLayoutViews();
+
+
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
 
             //Home
-            //CreateDummyData();
+            
             RetrievedData();
             
-            homeBtn.Click += HomeBtn_Click;
+            
             addMemberBtn.Click += AddMemberBtn_Click;
+        }
+
+        private void ConnectLayoutViews()
+        {
+            HomePage = (LinearLayout)FindViewById(Resource.Id.HomeLayout);
+            VisitsPage = (LinearLayout)FindViewById(Resource.Id.VisitLayout);
+            PaymentPage = (LinearLayout)FindViewById(Resource.Id.PaymentLayout);
+            ProfilePage = (LinearLayout)FindViewById(Resource.Id.ProfileLayout);
+            NotificationPage = (LinearLayout)FindViewById(Resource.Id.NotificationLayout);
+            profileButton = (ImageView)FindViewById(Resource.Id.profile);
+            notificationButton = (ImageView)FindViewById(Resource.Id.notification);
+
+            profileButton.Click += ProfileButton_Click;
+            notificationButton.Click += NotificationButton_Click;
+        }
+
+        private void NotificationButton_Click(object sender, EventArgs e)
+        {
+            HomePage.Visibility = Android.Views.ViewStates.Gone;
+            VisitsPage.Visibility = Android.Views.ViewStates.Gone;
+            PaymentPage.Visibility = Android.Views.ViewStates.Gone;
+            ProfilePage.Visibility = Android.Views.ViewStates.Gone;
+            NotificationPage.Visibility = Android.Views.ViewStates.Visible;
+            textMessage.Text = "Notifications";
+        }
+
+        private void ProfileButton_Click(object sender, EventArgs e)
+        {
+            HomePage.Visibility = Android.Views.ViewStates.Gone;
+            VisitsPage.Visibility = Android.Views.ViewStates.Gone;
+            PaymentPage.Visibility = Android.Views.ViewStates.Gone;
+            ProfilePage.Visibility = Android.Views.ViewStates.Visible;
+            NotificationPage.Visibility = Android.Views.ViewStates.Gone;
+            textMessage.Text = "Profile";
         }
 
         private void RetrievedData()
@@ -69,29 +115,6 @@ namespace ShareLock
             addmemberFragment.Show(trans, "new member");
         }
 
-        private void HomeBtn_Click(object sender, EventArgs e)
-        {
-            if (homeBtn.Visibility == Android.Views.ViewStates.Visible)
-            {
-                homeBtn.Visibility = Android.Views.ViewStates.Gone;
-                homeEdit.Visibility = Android.Views.ViewStates.Visible;
-            }
-            else
-            {
-                homeEdit.ClearFocus();
-                homeBtn.Visibility = Android.Views.ViewStates.Visible;
-                homeEdit.Visibility = Android.Views.ViewStates.Gone;
-            }
-        }
-
-        private void CreateDummyData()
-        {
-            memberList = new List<Members>();
-            memberList.Add(new Members { Fullname = "Jonathan D. Aplacador", ID = "1", ProfilePictureID = "1", Role = "Son" });
-            memberList.Add(new Members { Fullname = "Christine Joy D. Aplacador", ID = "1", ProfilePictureID = "1", Role = "Daughter" });
-            memberList.Add(new Members { Fullname = "Jericho D. Aplacador", ID = "1", ProfilePictureID = "1", Role = "Son" });
-            memberList.Add(new Members { Fullname = "Kassandra Jane D. Aplacador", ID = "1", ProfilePictureID = "1", Role = "Daughter" });
-        }
 
         private void SetUpMemberRecycler()
         {
@@ -118,12 +141,27 @@ namespace ShareLock
             switch (item.ItemId)
             {
                 case Resource.Id.navigation_home:
+                    HomePage.Visibility = Android.Views.ViewStates.Visible;
+                    VisitsPage.Visibility = Android.Views.ViewStates.Gone;
+                    PaymentPage.Visibility = Android.Views.ViewStates.Gone;
+                    ProfilePage.Visibility = Android.Views.ViewStates.Gone;
+                    NotificationPage.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_home);
                     return true;
                 case Resource.Id.navigation_dashboard:
+                    HomePage.Visibility = Android.Views.ViewStates.Gone;
+                    VisitsPage.Visibility = Android.Views.ViewStates.Visible;
+                    PaymentPage.Visibility = Android.Views.ViewStates.Gone;
+                    ProfilePage.Visibility = Android.Views.ViewStates.Gone;
+                    NotificationPage.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_dashboard);
                     return true;
                 case Resource.Id.navigation_notifications:
+                    HomePage.Visibility = Android.Views.ViewStates.Gone;
+                    VisitsPage.Visibility = Android.Views.ViewStates.Gone;
+                    PaymentPage.Visibility = Android.Views.ViewStates.Visible;
+                    ProfilePage.Visibility = Android.Views.ViewStates.Gone;
+                    NotificationPage.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_notifications);
                     return true;
             }

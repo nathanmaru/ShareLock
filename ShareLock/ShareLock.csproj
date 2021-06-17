@@ -64,14 +64,20 @@
     <Compile Include="Activities\GetStartedActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\SignUpActivity.cs" />
+    <Compile Include="Adapter\DoorLockAdapter.cs" />
     <Compile Include="Adapter\MemberAdapter.cs" />
+    <Compile Include="Adapter\RequestAdapter.cs" />
+    <Compile Include="Adapter\SavedHomeAdapter.cs" />
     <Compile Include="EventListeners\AccountListener.cs" />
     <Compile Include="EventListeners\MemberListener.cs" />
     <Compile Include="Fragments\AddMemberFragment.cs" />
     <Compile Include="Helpers\AppDataHelper.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\DoorLock.cs" />
+    <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Members.cs" />
+    <Compile Include="Models\Request.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -217,6 +223,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\HomeRequest.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\HomeItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\RequestItem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
