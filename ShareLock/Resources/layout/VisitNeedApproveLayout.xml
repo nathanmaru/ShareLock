@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="Do you want to approve @VisitorName to enter @DoorlockName?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/textView1" />
+    <TextView
+        android:text="Message:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/textView2" />
+    <TextView
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapien ultrices ornare."
+        android:layout_width="match_parent"
+        android:padding="15dp"
+        android:background="@drawable/myroundedcorners"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+        <Button
+        android:text="Approve"
+        android:layout_width="wrap_content"
+        android:minWidth="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/myroundedcorners"
+        android:id="@+id/button1" />
+        <Button
+        android:text="Decline"
+        android:layout_width="wrap_content"
+        android:minWidth="150dp"
+        android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+        android:background="@drawable/myroundedcorners"
+        android:id="@+id/button2" />
+    </RelativeLayout>
+    
+
+
+
+</LinearLayout>

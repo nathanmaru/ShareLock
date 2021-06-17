@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/linearLayout6" >
+            
+            <TextView
+                android:text="Saved Homes:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView4" />
+         
+			<ImageView
+				android:src="@android:drawable/ic_menu_gallery"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_alignParentRight="true"
+				android:id="@+id/addMember"
+				    />
+        
+    </RelativeLayout>
+    
+   
+        <androidx.recyclerview.widget.RecyclerView
+        android:minWidth="100dp"
+        android:minHeight="140dp"
+        android:paddingLeft="10dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:background="#e2e2e2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/familyMembersRecyclerView"
+        android:scrollbars="horizontal"
+        android:layout_marginBottom="20dp"
+       />
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/linearLayout7" >
+            
+            <TextView
+                android:text="Visitor Requests:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView4" />
+         
+			<ImageView
+				android:src="@android:drawable/ic_menu_gallery"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_alignParentRight="true"
+				android:id="@+id/addMember"
+				    />
+        
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:minWidth="100dp"
+        android:minHeight="140dp"
+        android:paddingLeft="10dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:background="#e2e2e2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/visitorRequestRecyclerView"
+        android:scrollbars="horizontal"
+        android:layout_marginBottom="20dp"
+       />
+    
+
+</LinearLayout>

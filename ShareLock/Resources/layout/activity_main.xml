@@ -7,6 +7,8 @@
     android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    ///Header
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,13 +35,38 @@
 
 	</RelativeLayout>
     
+    ///HomePage
     <include
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="70dp"
+        
             layout="@layout/HomePage"/>
-
+    //Visit Page 
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
+        android:visibility="gone"
+            layout="@layout/VisitsPage"/>
+    //Payments Page
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
+        android:visibility="gone"
+            layout="@layout/PaymentLayout"/>
+    //Profile Page
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
+        android:visibility="gone"
+            layout="@layout/profilelayout"/>
         
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

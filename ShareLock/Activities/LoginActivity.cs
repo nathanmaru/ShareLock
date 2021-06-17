@@ -67,7 +67,7 @@ namespace ShareLock.Activities
             if (CheckExistingAccounts() == 1)
             {
                 LogIn();
-                Toast.MakeText(loginBtn.Context, "Account Created!", ToastLength.Short).Show();
+                Toast.MakeText(loginBtn.Context, "Login Success!", ToastLength.Short).Show();
                 var intent1 = new Intent(this, typeof(MainActivity));
                 //pass username through extras
                 StartActivity(intent1);
@@ -76,8 +76,7 @@ namespace ShareLock.Activities
             {
                 Toast.MakeText(loginBtn.Context, "Username or Password don't exist!", ToastLength.Short).Show();
             }
-            var intent = new Intent(this, typeof(MainActivity));
-            StartActivity(intent);
+            
         }
 
         private int CheckExistingAccounts()

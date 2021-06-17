@@ -3,27 +3,34 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:text="Home Name"
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout8" >
+        <TextView
+        android:text="Home Name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:id="@+id/HomeNameBtn" />
+        <TextView
+            android:text="Edit Home"
+            
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/holo_blue_light"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7" />
+    </RelativeLayout>
+    
+    
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:inputType="text"
-        android:visibility="gone"
-        android:id="@+id/homenameTxt"
-        android:hint="Enter House Name"/>
-    <Button
-        android:text="Save"
-        android:layout_width="100dp"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:id="@+id/button1" />
+    
+    
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -50,16 +57,50 @@
    
         <androidx.recyclerview.widget.RecyclerView
         android:minWidth="25px"
-        android:minHeight="25px"
+        android:minHeight="250px"
         android:paddingLeft="10dp"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#e2e2e2"
         android:id="@+id/familyMembersRecyclerView"
         android:scrollbars="horizontal"
        />
     
-
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/linearLayout7" >
+            
+                <TextView
+                    android:text="Door Locks:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView4" />
+         
+			    <ImageView
+				    android:src="@android:drawable/ic_menu_gallery"
+				    android:layout_width="40dp"
+				    android:layout_height="40dp"
+				    android:layout_alignParentRight="true"
+				    android:id="@+id/addDoorLock"
+				     />
+        
+    </RelativeLayout>
+    
+   
+        <androidx.recyclerview.widget.RecyclerView
+        android:minWidth="25px"
+        android:minHeight="250px"
+        android:paddingLeft="10dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e2e2e2"
+        android:id="@+id/doorlocksRecyclerView"
+        android:scrollbars="horizontal"
+       />
     
     
 
