@@ -16,7 +16,7 @@ using Fragment = Android.Support.V4.App.Fragment;
 
 namespace ShareLock
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
         TextView textMessage;

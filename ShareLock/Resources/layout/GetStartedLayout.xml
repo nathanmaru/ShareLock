@@ -63,7 +63,7 @@
         android:elevation="0dp"
         android:layout_gravity="center"
         android:background="@drawable/myroundedcorners"
-        android:id="@+id/button1" />
+        android:id="@+id/getstartedBtn" />
     <RelativeLayout
         android:orientation="horizontal"
         android:gravity="center"
@@ -82,10 +82,10 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_light"
-            android:layout_marginLeft="10dp"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/textView4"
-        android:id="@+id/textView5" />
+        android:id="@+id/loginBtn" />
     </RelativeLayout>
     
    
