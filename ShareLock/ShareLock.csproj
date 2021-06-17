@@ -68,6 +68,7 @@
     <Compile Include="Adapter\MemberAdapter.cs" />
     <Compile Include="Adapter\RequestAdapter.cs" />
     <Compile Include="Adapter\SavedHomeAdapter.cs" />
+    <Compile Include="Adapter\SubscriptionAdapter.cs" />
     <Compile Include="EventListeners\AccountListener.cs" />
     <Compile Include="EventListeners\MemberListener.cs" />
     <Compile Include="Fragments\AddMemberFragment.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Members.cs" />
     <Compile Include="Models\Request.cs" />
+    <Compile Include="Models\SubscriptionPlan.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -233,6 +235,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\RequestItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SubcriptionItem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
