@@ -21,7 +21,7 @@ namespace ShareLock.Models
         public string DoorLockId { get; set; } ///FK
         public string DoorLockName { get; set; }
         public string UserID { get; set; } ///FK
-        public bool isApprove { get; set; } ///FK
+        public string isApprove { get; set; } ///FK
         public string OneTimePassword { get; set; } ///FK
 
     }
