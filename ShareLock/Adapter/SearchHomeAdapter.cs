@@ -11,9 +11,9 @@ namespace ShareLock.Adapter
     {
         public event EventHandler<SearchHomeAdapterClickEventArgs> ItemClick;
         public event EventHandler<SearchHomeAdapterClickEventArgs> ItemLongClick;
-        List<Home> items;
+        List<DoorLock> items;
 
-        public SearchHomeAdapter(List<Home> data)
+        public SearchHomeAdapter(List<DoorLock> data)
         {
             items = data;
         }
@@ -38,8 +38,8 @@ namespace ShareLock.Adapter
 
             // Replace the contents of the view with that element
             var holder = viewHolder as SearchHomeAdapterViewHolder;
-            holder.HomeName.Text = items[position].HomeName;
-            //holder.HomeAddress.Text = items[position].HomeAddress;
+            holder.HomeName.Text = items[position].FamilyName;
+            holder.HomeAddress.Text = items[position].Address;
         }
 
         public override int ItemCount => items.Count;
@@ -59,7 +59,7 @@ namespace ShareLock.Adapter
         {
             //TextView = v;
             HomeName = (TextView)itemView.FindViewById(Resource.Id.homeNameTxt);
-            //HomeAddress = (TextView)itemView.FindViewById(Resource.Id.homeAddress);
+            HomeAddress = (TextView)itemView.FindViewById(Resource.Id.homeAddress);
             itemView.Click += (sender, e) => clickListener(new SearchHomeAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new SearchHomeAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
         }

@@ -139,13 +139,13 @@ namespace ShareLock
         private void SearchHometxt_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             ///
-            /*List<Note> SearchResult =
-                (from note in NoteList
-                 where note.NoteTitle.ToLower().Contains(searchText.Text.ToLower()) ||
-                 note.NoteContent.ToLower().Contains(searchText.Text.ToLower())
-                 select note).ToList();
-            adapter = new NoteAdapter(SearchResult);
-            myRecyclerView.SetAdapter(adapter);*/
+            List<DoorLock> SearchResult =
+                (from doorlock in doorLockList
+                 where doorlock.Address.ToLower().Contains(SearchHometxt.Text.ToLower()) ||
+                 doorlock.FamilyName.ToLower().Contains(SearchHometxt.Text.ToLower())
+                 select doorlock).ToList();
+            doorLockAdapter = new DoorLockAdapter(SearchResult);
+            homeSearchRecycle.SetAdapter(doorLockAdapter);
         }
 
         private void SaveHome_Click(object sender, EventArgs e)
@@ -178,6 +178,7 @@ namespace ShareLock
             ProfilePage.Visibility = Android.Views.ViewStates.Gone;
             NotificationPage.Visibility = Android.Views.ViewStates.Gone;
             HomeEditPage.Visibility = Android.Views.ViewStates.Visible;
+            SearchHome.Visibility = Android.Views.ViewStates.Gone;
             textMessage.Text = "Home Edit";
         }
 
@@ -238,21 +239,17 @@ namespace ShareLock
             doorLockListener.Create();
             doorLockListener.DoorLockRetrived += DoorLockListener_DoorLockRetrived;
 
-            homeListener = new HomeListener();
+            /*homeListener = new HomeListener();
             homeListener.Create();
-            homeListener.HomeRetrived += HomeListener_HomeRetrived;
+            homeListener.HomeRetrived += HomeListener_HomeRetrived;*/
         }
 
-        private void HomeListener_HomeRetrived(object sender, HomeListener.HomeDataEventArgs e)
-        {
-            homeList = e.Home;
-            SetupSearchHomeRecycler();
-        }
+      
 
         private void SetupSearchHomeRecycler()
         {
             homeSearchRecycle.SetLayoutManager(new Android.Support.V7.Widget.LinearLayoutManager(homeSearchRecycle.Context));
-            searchHomeAdapter = new SearchHomeAdapter(homeList);
+            searchHomeAdapter = new SearchHomeAdapter(doorLockList);
 
             searchHomeAdapter.ItemClick += SearchHomeAdapter_ItemClick;
             homeSearchRecycle.SetAdapter(searchHomeAdapter);
@@ -281,7 +278,7 @@ namespace ShareLock
 
         private void SetUpDoorLockRecycler()
         {
-            doorLockRecyle.SetLayoutManager(new Android.Support.V7.Widget.LinearLayoutManager(doorLockRecyle.Context, LinearLayoutManager.Horizontal, false));
+            doorLockRecyle.SetLayoutManager(new Android.Support.V7.Widget.LinearLayoutManager(doorLockRecyle.Context));
             doorLockAdapter = new DoorLockAdapter(doorLockList);
 
             doorLockAdapter.ItemClick += DoorLockAdapter_ItemClick;
@@ -343,6 +340,7 @@ namespace ShareLock
                     ProfilePage.Visibility = Android.Views.ViewStates.Gone;
                     NotificationPage.Visibility = Android.Views.ViewStates.Gone;
                     HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
+                    SearchHome.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_home);
                     return true;
                 case Resource.Id.navigation_dashboard:
@@ -352,6 +350,7 @@ namespace ShareLock
                     ProfilePage.Visibility = Android.Views.ViewStates.Gone;
                     NotificationPage.Visibility = Android.Views.ViewStates.Gone;
                     HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
+                    SearchHome.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_dashboard);
                     return true;
                 case Resource.Id.navigation_notifications:
@@ -361,6 +360,7 @@ namespace ShareLock
                     ProfilePage.Visibility = Android.Views.ViewStates.Gone;
                     NotificationPage.Visibility = Android.Views.ViewStates.Gone;
                     HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
+                    SearchHome.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_notifications);
                     return true;
             }

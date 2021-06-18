@@ -41,6 +41,9 @@ namespace ShareLock.EventListeners
                     doorLock.DoorLockName = memberData.Child("DoorName").Value.ToString();
                     doorLock.Password = memberData.Child("Password").Value.ToString();
                     doorLock.Username = memberData.Child("Username").Value.ToString();
+                    doorLock.FamilyName = memberData.Child("FamilyName").Value.ToString();
+                    doorLock.Address = memberData.Child("Address").Value.ToString();
+                    doorLock.OneTimePassword = memberData.Child("OTP").Value.ToString();
                     doorLockList.Add(doorLock);
                 }
                 DoorLockRetrived.Invoke(this, new DoorLockDataEventArgs { DoorLock = doorLockList });

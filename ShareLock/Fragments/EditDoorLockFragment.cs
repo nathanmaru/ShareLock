@@ -21,6 +21,8 @@ namespace ShareLock.Fragments
         EditText DoorId;
         EditText Doorname;
         EditText Password;
+        EditText Address;
+        EditText OwnerName;
         Button Addbtn;
         ActiveUser activeusername;
         DoorLock thisDoorLock;
@@ -43,11 +45,15 @@ namespace ShareLock.Fragments
             DoorId = (EditText)view.FindViewById(Resource.Id.doorLockId);
             Doorname = (EditText)view.FindViewById(Resource.Id.doorlockName);
             Password = (EditText)view.FindViewById(Resource.Id.doorLockPassword);
+            Address = (EditText)view.FindViewById(Resource.Id.doorLockAddress);
+            OwnerName = (EditText)view.FindViewById(Resource.Id.familyOwner);
             Addbtn = (Button)view.FindViewById(Resource.Id.EditDoorLockButton);
 
             Doorname.Text = thisDoorLock.DoorLockName;
             DoorId.Text = thisDoorLock.DoorLockId;
             Password.Text = thisDoorLock.Password;
+            Address.Text = thisDoorLock.Address;
+            OwnerName.Text = thisDoorLock.FamilyName;
 
 
             Addbtn.Click += Addbtn_Click;
@@ -60,12 +66,14 @@ namespace ShareLock.Fragments
             string doorId = DoorId.Text;
             string doorName = Doorname.Text;
             string password = Password.Text;
+            string address = Address.Text;
+            string ownername = OwnerName.Text;
             //also pass home id
 
             //Do something to Retrieve FullName
             //RetrieveFullName();
 
-            
+
 
             AndroidX.AppCompat.App.AlertDialog.Builder dialog = new AndroidX.AppCompat.App.AlertDialog.Builder(Activity);
             dialog.SetTitle("Adding DoorLock");
@@ -75,6 +83,8 @@ namespace ShareLock.Fragments
                 AppDataHelper.GetDatabase().GetReference("doorLockInfo/" + thisDoorLock.ID + "/DoorName").SetValue(doorName);
                 AppDataHelper.GetDatabase().GetReference("doorLockInfo/" + thisDoorLock.ID + "/Key").SetValue(doorId);
                 AppDataHelper.GetDatabase().GetReference("doorLockInfo/" + thisDoorLock.ID + "/Password").SetValue(password);
+                AppDataHelper.GetDatabase().GetReference("doorLockInfo/" + thisDoorLock.ID + "/Address").SetValue(password);
+                AppDataHelper.GetDatabase().GetReference("doorLockInfo/" + thisDoorLock.ID + "/OwnerName").SetValue(password);
                 Toast.MakeText(Addbtn.Context, "DoorLock Added!", ToastLength.Short).Show();
                 this.Dismiss();
             });

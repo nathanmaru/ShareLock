@@ -6,35 +6,26 @@
 	android:padding="20dp"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+	
 		<TextView
-			android:text="Home Name"
+			android:text="Family Name"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:textSize="20dp"
 			android:id="@id/homeNameTxt" />
-		<ImageView
-			android:src="@android:drawable/ic_menu_gallery"
-			android:layout_width="30dp"
-			android:layout_height="30dp"
-			android:layout_alignParentRight="true"
-			android:id="@+id/imageView1" />
 
-
-	</RelativeLayout>
-	<!--<TextView
+	
+	<TextView
 		android:text="Home Address"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dp"
 		android:id="@id/homeAddress"
-		tools:ignore="UnresolvedResource" />-->
+		 />
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="1dp"
-		android:background="#e2e2e2"/>
+		android:background="@android:color/black"/>
 
 
 </LinearLayout>

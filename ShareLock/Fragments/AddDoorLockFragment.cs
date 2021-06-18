@@ -22,6 +22,8 @@ namespace ShareLock.Fragments
         EditText DoorId;
         EditText Doorname;
         EditText Password;
+        EditText Address;
+        EditText OwnerName;
         Button Addbtn;
         ActiveUser activeusername;
         public override void OnCreate(Bundle savedInstanceState)
@@ -39,6 +41,8 @@ namespace ShareLock.Fragments
             DoorId = (EditText)view.FindViewById(Resource.Id.doorLockId);
             Doorname = (EditText)view.FindViewById(Resource.Id.doorLockName);
             Password = (EditText)view.FindViewById(Resource.Id.doorLockPassword);
+            Address = (EditText)view.FindViewById(Resource.Id.doorLockAddress);
+            OwnerName = (EditText)view.FindViewById(Resource.Id.familyOwner);
             Addbtn = (Button)view.FindViewById(Resource.Id.addDoorLockBtn);
 
             Addbtn.Click += Addbtn_Click;
@@ -51,6 +55,8 @@ namespace ShareLock.Fragments
             string doorId = DoorId.Text;
             string doorName = Doorname.Text;
             string password = Password.Text;
+            string address = Address.Text;
+            string ownername = OwnerName.Text;
             //also pass home id
 
             //Do something to Retrieve FullName
@@ -61,6 +67,9 @@ namespace ShareLock.Fragments
             doorlockInfo.Put("DoorName", doorName);
             doorlockInfo.Put("Password", password);
             doorlockInfo.Put("Username", ActiveUser.username);
+            doorlockInfo.Put("Address", address);
+            doorlockInfo.Put("FamilyName", ownername);
+            doorlockInfo.Put("OTP", "not set");
 
             AndroidX.AppCompat.App.AlertDialog.Builder dialog = new AndroidX.AppCompat.App.AlertDialog.Builder(Activity);
             dialog.SetTitle("Adding DoorLock");
