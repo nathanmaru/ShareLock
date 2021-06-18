@@ -59,7 +59,7 @@ namespace ShareLock.Adapter
         {
             //TextView = v;
             HomeName = (TextView)itemView.FindViewById(Resource.Id.homeNameTxt);
-            HomeAddress = (TextView)itemView.FindViewById(Resource.Id.homeAddress);
+            HomeAddress = (TextView)itemView.FindViewById(Resource.Id.homeaddressTxt);
             itemView.Click += (sender, e) => clickListener(new SearchHomeAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new SearchHomeAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
         }

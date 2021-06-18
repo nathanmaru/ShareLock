@@ -25,7 +25,7 @@ namespace ShareLock.Fragments
         EditText Address;
         EditText OwnerName;
         Button Addbtn;
-        ActiveUser activeusername;
+        //ActiveUser activeusername;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

@@ -24,7 +24,7 @@ namespace ShareLock.Fragments
         EditText Address;
         EditText OwnerName;
         Button Addbtn;
-        ActiveUser activeusername;
+        //ActiveUser activeusername;
         DoorLock thisDoorLock;
         public EditDoorLockFragment(DoorLock doorLock)
         {

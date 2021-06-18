@@ -24,8 +24,8 @@ namespace ShareLock
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
         TextView textMessage;
-        TextView editHome;
-        TextView homeName;
+        //TextView editHome;
+        //TextView homeName;
 
         EditText SearchHometxt;
         EditText HomeName;
@@ -37,29 +37,29 @@ namespace ShareLock
         MemberAdapter memberAdapter;
         DoorLockAdapter doorLockAdapter;
         SearchHomeAdapter searchHomeAdapter;
-        SavedHomeAdapter savedHomeAdapter;
+        //SavedHomeAdapter savedHomeAdapter;
 
 
         List<Members> memberList;
         List<DoorLock> doorLockList;
-        List<Home> homeList;
+        //List<Home> homeList;
 
-        ActiveUser activeUsername;
+        //ActiveUser activeUsername;
 
         RecyclerView memberRecyle;
         RecyclerView doorLockRecyle;
         RecyclerView homeSearchRecycle;
-        RecyclerView homeSavedRecycle;
+        //RecyclerView homeSavedRecycle;
 
         ImageView addMemberBtn;
         ImageView addDoorLockBtn;
         
         MemberListener memberListener;
         DoorLockListener doorLockListener;
-        HomeListener homeListener;
+        //HomeListener homeListener;
 
         AddDoorLockFragment addDoorLockFragment;
-        RequestApprovalFragment requestApprovalFragment;
+        //RequestApprovalFragment requestApprovalFragment;
         AddMemberFragment addmemberFragment;
 
 
@@ -265,6 +265,7 @@ namespace ShareLock
             doorLockList = e.DoorLock;
             FilterDoorLocks();
             SetUpDoorLockRecycler();
+            SetupSearchHomeRecycler();
         }
 
         private void FilterDoorLocks()
