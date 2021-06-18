@@ -26,6 +26,7 @@ namespace ShareLock
         TextView editHome;
         TextView homeName;
 
+        EditText SearchHometxt;
         EditText HomeName;
         EditText HomeAddress;
         EditText HomeBio;
@@ -34,19 +35,25 @@ namespace ShareLock
 
         MemberAdapter memberAdapter;
         DoorLockAdapter doorLockAdapter;
+        SearchHomeAdapter searchHomeAdapter;
+        SavedHomeAdapter savedHomeAdapter;
 
 
         List<Members> memberList;
         List<DoorLock> doorLockList;
+        List<Home> homeList;
 
         RecyclerView memberRecyle;
         RecyclerView doorLockRecyle;
+        RecyclerView homeSearchRecycle;
+        RecyclerView homeSavedRecycle;
 
         ImageView addMemberBtn;
         ImageView addDoorLockBtn;
         
         MemberListener memberListener;
         DoorLockListener doorLockListener;
+        HomeListener homeListener;
 
         AddDoorLockFragment addDoorLockFragment;
         RequestApprovalFragment requestApprovalFragment;
@@ -59,17 +66,22 @@ namespace ShareLock
         LinearLayout ProfilePage;
         LinearLayout NotificationPage;
         LinearLayout HomeEditPage;
+        LinearLayout SearchHome;
 
         ImageView profileButton;
         ImageView notificationButton;
-        
+        ImageView searchHomeButton;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
+
             memberRecyle = (RecyclerView)FindViewById(Resource.Id.familyMembersRecyclerView);
             doorLockRecyle = (RecyclerView)FindViewById(Resource.Id.doorlocksRecyclerView);
+            homeSearchRecycle = (RecyclerView)FindViewById(Resource.Id.HomeSearchRecyclerView);
+
             textMessage = FindViewById<TextView>(Resource.Id.message);
             editHome = FindViewById<TextView>(Resource.Id.editHomeButton);
 
@@ -78,13 +90,18 @@ namespace ShareLock
             HomeBio = (EditText)FindViewById(Resource.Id.homeBioText);
             SaveHome = (Button)FindViewById(Resource.Id.saveHomeBtn);
 
+            SearchHometxt = (EditText)FindViewById(Resource.Id.searchHomeTxt);
+
+            SearchHometxt.TextChanged += SearchHometxt_TextChanged;
+
             homeName = (TextView)FindViewById(Resource.Id.HomeName); ///Needed filter Retrieve first
 
             SaveHome.Click += SaveHome_Click;
 
             addMemberBtn = (ImageView)FindViewById(Resource.Id.addMember);
             addDoorLockBtn = (ImageView)FindViewById(Resource.Id.addDoorLock);
-            
+            searchHomeButton = (ImageView)FindViewById(Resource.Id.addSavedHome);
+
 
             ConnectLayoutViews();
 
@@ -100,6 +117,30 @@ namespace ShareLock
             addMemberBtn.Click += AddMemberBtn_Click;
             addDoorLockBtn.Click += AddDoorLockBtn_Click;
             editHome.Click += EditHome_Click;
+            searchHomeButton.Click += SearchHomeButton_Click;
+        }
+
+        private void SearchHomeButton_Click(object sender, EventArgs e)
+        {
+            HomePage.Visibility = Android.Views.ViewStates.Gone;
+            VisitsPage.Visibility = Android.Views.ViewStates.Gone;
+            PaymentPage.Visibility = Android.Views.ViewStates.Gone;
+            ProfilePage.Visibility = Android.Views.ViewStates.Gone;
+            NotificationPage.Visibility = Android.Views.ViewStates.Gone;
+            HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
+            SearchHome.Visibility = Android.Views.ViewStates.Visible;
+        }
+
+        private void SearchHometxt_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            ///
+            /*List<Note> SearchResult =
+                (from note in NoteList
+                 where note.NoteTitle.ToLower().Contains(searchText.Text.ToLower()) ||
+                 note.NoteContent.ToLower().Contains(searchText.Text.ToLower())
+                 select note).ToList();
+            adapter = new NoteAdapter(SearchResult);
+            myRecyclerView.SetAdapter(adapter);*/
         }
 
         private void SaveHome_Click(object sender, EventArgs e)
@@ -152,6 +193,7 @@ namespace ShareLock
             profileButton = (ImageView)FindViewById(Resource.Id.profile);
             notificationButton = (ImageView)FindViewById(Resource.Id.notification);
             HomeEditPage = (LinearLayout)FindViewById(Resource.Id.EditHomeLayout);
+            SearchHome = (LinearLayout)FindViewById(Resource.Id.SearchHomeLayout);
 
             profileButton.Click += ProfileButton_Click;
             notificationButton.Click += NotificationButton_Click;
@@ -165,6 +207,7 @@ namespace ShareLock
             ProfilePage.Visibility = Android.Views.ViewStates.Gone;
             NotificationPage.Visibility = Android.Views.ViewStates.Visible;
             HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
+            SearchHome.Visibility = Android.Views.ViewStates.Gone;
             textMessage.Text = "Notifications";
         }
 
@@ -176,6 +219,7 @@ namespace ShareLock
             ProfilePage.Visibility = Android.Views.ViewStates.Visible;
             NotificationPage.Visibility = Android.Views.ViewStates.Gone;
             HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
+            SearchHome.Visibility = Android.Views.ViewStates.Gone;
             textMessage.Text = "Profile";
         }
 
@@ -188,6 +232,30 @@ namespace ShareLock
             doorLockListener = new DoorLockListener();
             doorLockListener.Create();
             doorLockListener.DoorLockRetrived += DoorLockListener_DoorLockRetrived;
+
+            homeListener = new HomeListener();
+            homeListener.Create();
+            homeListener.HomeRetrived += HomeListener_HomeRetrived;
+        }
+
+        private void HomeListener_HomeRetrived(object sender, HomeListener.HomeDataEventArgs e)
+        {
+            homeList = e.Home;
+            SetupSearchHomeRecycler();
+        }
+
+        private void SetupSearchHomeRecycler()
+        {
+            homeSearchRecycle.SetLayoutManager(new Android.Support.V7.Widget.LinearLayoutManager(homeSearchRecycle.Context));
+            searchHomeAdapter = new SearchHomeAdapter(homeList);
+
+            searchHomeAdapter.ItemClick += SearchHomeAdapter_ItemClick;
+            homeSearchRecycle.SetAdapter(searchHomeAdapter);
+        }
+
+        private void SearchHomeAdapter_ItemClick(object sender, SearchHomeAdapterClickEventArgs e)
+        {
+            
         }
 
         private void DoorLockListener_DoorLockRetrived(object sender, DoorLockListener.DoorLockDataEventArgs e)

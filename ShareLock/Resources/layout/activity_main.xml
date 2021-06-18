@@ -108,7 +108,7 @@
                 layout="@layout/NotificationsLayout"/>
     </LinearLayout>
 
-    //Notification Page
+    //HomeEdit Page
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -121,6 +121,21 @@
             android:layout_marginBottom="70dp"
             
                 layout="@layout/HomeEditLayout"/>
+    </LinearLayout>
+    
+     //Search Home Page
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/SearchHomeLayout">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            
+                layout="@layout/SearchHomeLayout"/>
     </LinearLayout>
         
 

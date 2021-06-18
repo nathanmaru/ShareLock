@@ -72,7 +72,9 @@
     <Compile Include="Adapter\SubscriptionAdapter.cs" />
     <Compile Include="EventListeners\AccountListener.cs" />
     <Compile Include="EventListeners\DoorLockListener.cs" />
+    <Compile Include="EventListeners\HomeListener.cs" />
     <Compile Include="EventListeners\MemberListener.cs" />
+    <Compile Include="EventListeners\RequestListener.cs" />
     <Compile Include="Fragments\AddDoorLockFragment.cs" />
     <Compile Include="Fragments\AddMemberFragment.cs" />
     <Compile Include="Fragments\RequestApprovalFragment.cs" />
