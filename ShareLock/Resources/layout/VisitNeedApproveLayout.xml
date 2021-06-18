@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Do you want to approve @VisitorName to enter @DoorlockName?"
+        android:text="Request Information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp"
@@ -14,6 +14,46 @@
         android:minHeight="25px"
         android:layout_marginBottom="20dp"
         android:id="@+id/textView1" />
+    
+        <TextView
+            android:text="Visitor Name:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+        android:layout_marginBottom="10dp"
+            android:id="@+id/textView4" />
+        <TextView
+            android:text="Johnny Joe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/myroundedcorners"
+            android:minWidth="25px"
+            android:minHeight="25px"
+        android:layout_marginBottom="10dp"
+            android:id="@+id/visitorName" />
+     <TextView
+            android:text="Door Lock Name:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="25px"
+            android:minHeight="25px"
+        android:layout_marginBottom="10dp"
+            android:id="@+id/textView5" />
+        <TextView
+            android:text="Door Lock Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/myroundedcorners"
+            android:minWidth="25px"
+            android:minHeight="25px"
+        android:layout_marginBottom="10dp"
+            android:id="@+id/doorName" />
+
+    
+    
     <TextView
         android:text="Message:"
         android:layout_width="match_parent"
@@ -26,7 +66,7 @@
         android:padding="15dp"
         android:background="@drawable/myroundedcorners"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/messageTxt" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +77,7 @@
         android:minWidth="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/myroundedcorners"
-        android:id="@+id/button1" />
+        android:id="@+id/approveBtn" />
         <Button
         android:text="Decline"
         android:layout_width="wrap_content"
@@ -45,7 +85,7 @@
         android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
         android:background="@drawable/myroundedcorners"
-        android:id="@+id/button2" />
+        android:id="@+id/declineBtn" />
     </RelativeLayout>
     
 

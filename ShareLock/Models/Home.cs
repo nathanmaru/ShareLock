@@ -15,6 +15,8 @@ namespace ShareLock.Models
     {
         public string ID { get; set; }
         public string HomeName { get; set; }
-        
+        public string HomeAddress { get; set; }
+        public string HomeImageId { get; set; }
+
     }
 }

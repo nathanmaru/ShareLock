@@ -68,10 +68,13 @@
     <Compile Include="Adapter\MemberAdapter.cs" />
     <Compile Include="Adapter\RequestAdapter.cs" />
     <Compile Include="Adapter\SavedHomeAdapter.cs" />
+    <Compile Include="Adapter\SearchHomeAdapter.cs" />
     <Compile Include="Adapter\SubscriptionAdapter.cs" />
     <Compile Include="EventListeners\AccountListener.cs" />
     <Compile Include="EventListeners\MemberListener.cs" />
+    <Compile Include="Fragments\AddDoorLockFragment.cs" />
     <Compile Include="Fragments\AddMemberFragment.cs" />
+    <Compile Include="Fragments\RequestApprovalFragment.cs" />
     <Compile Include="Helpers\AppDataHelper.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Account.cs" />
@@ -240,6 +243,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\SubcriptionItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SearchHomeLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SearchHouseItem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

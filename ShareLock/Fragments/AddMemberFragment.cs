@@ -20,7 +20,7 @@ namespace ShareLock.Fragments
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
-            
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -36,7 +36,7 @@ namespace ShareLock.Fragments
             addBtn.Click += AddBtn_Click;
             return view;
 
-            
+
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace ShareLock.Fragments
 
         private void RetrieveFullName()
         {
-            
+
         }
     }
 }
