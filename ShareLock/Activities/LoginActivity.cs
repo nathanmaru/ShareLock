@@ -22,6 +22,7 @@ namespace ShareLock.Activities
         TextView signupRedirector;
         List<Account> AccountList;
         AccountListener accountListener;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -69,8 +70,12 @@ namespace ShareLock.Activities
                 LogIn();
                 Toast.MakeText(loginBtn.Context, "Login Success!", ToastLength.Short).Show();
                 var intent1 = new Intent(this, typeof(MainActivity));
+
+                ActiveUser.username = username.Text;
+                intent1.PutExtra("userName", username.Text);
                 //pass username through extras
                 StartActivity(intent1);
+                
             }
             else
             {

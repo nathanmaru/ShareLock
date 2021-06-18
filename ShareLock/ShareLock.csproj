@@ -77,10 +77,12 @@
     <Compile Include="EventListeners\RequestListener.cs" />
     <Compile Include="Fragments\AddDoorLockFragment.cs" />
     <Compile Include="Fragments\AddMemberFragment.cs" />
+    <Compile Include="Fragments\EditDoorLockFragment.cs" />
     <Compile Include="Fragments\RequestApprovalFragment.cs" />
     <Compile Include="Helpers\AppDataHelper.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\ActiveUser.cs" />
     <Compile Include="Models\DoorLock.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Members.cs" />

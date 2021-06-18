@@ -27,6 +27,7 @@ namespace ShareLock.Activities
         TextView loginRedirector;
         List<Account> AccountList;
         AccountListener accountListener;
+        
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -77,6 +78,9 @@ namespace ShareLock.Activities
                 SignUp();
                 Toast.MakeText(signUpBtn.Context, "Account Created!", ToastLength.Short).Show();
                 var intent = new Intent(this, typeof(MainActivity));
+                
+                ActiveUser.username = username.Text;
+                intent.PutExtra("userName", username.Text);
                 //pass username through extras
                 StartActivity(intent);
             }

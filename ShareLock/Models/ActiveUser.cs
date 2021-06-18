@@ -11,12 +11,8 @@ using System.Text;
 
 namespace ShareLock.Models
 {
-    public class DoorLock
+    public  class ActiveUser
     {
-        public string ID { get; set; }
-        public string DoorLockId { get; set; }
-        public string DoorLockName { get; set; }
-        public string Password { get; set; }
-        public string Username { get; set; }
+        public static string username { get; set; }
     }
 }

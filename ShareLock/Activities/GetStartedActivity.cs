@@ -11,7 +11,7 @@ using System.Text;
 
 namespace ShareLock.Activities
 {
-    [Activity(Label = "GetStartedActivity")]
+    [Activity(Label = "GetStartedActivity", MainLauncher = true)]
     public class GetStartedActivity : Activity
     {
         Button signUpRedirect;
@@ -34,6 +34,7 @@ namespace ShareLock.Activities
         private void LoginRedirect_Click(object sender, EventArgs e)
         {
             var intent = new Intent(this, typeof(LoginActivity));
+            
             StartActivity(intent);
         }
 

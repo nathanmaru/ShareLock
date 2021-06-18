@@ -15,11 +15,12 @@ using ShareLock.Helpers;
 using ShareLock.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace ShareLock
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
         TextView textMessage;
@@ -42,6 +43,8 @@ namespace ShareLock
         List<Members> memberList;
         List<DoorLock> doorLockList;
         List<Home> homeList;
+
+        ActiveUser activeUsername;
 
         RecyclerView memberRecyle;
         RecyclerView doorLockRecyle;
@@ -71,6 +74,7 @@ namespace ShareLock
         ImageView profileButton;
         ImageView notificationButton;
         ImageView searchHomeButton;
+        string Username;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -83,7 +87,7 @@ namespace ShareLock
             homeSearchRecycle = (RecyclerView)FindViewById(Resource.Id.HomeSearchRecyclerView);
 
             textMessage = FindViewById<TextView>(Resource.Id.message);
-            editHome = FindViewById<TextView>(Resource.Id.editHomeButton);
+            //editHome = FindViewById<TextView>(Resource.Id.editHomeButton);
 
             HomeName = (EditText)FindViewById(Resource.Id.homeNameTxt);
             HomeAddress = (EditText)FindViewById(Resource.Id.homeaddressTxt);
@@ -94,7 +98,7 @@ namespace ShareLock
 
             SearchHometxt.TextChanged += SearchHometxt_TextChanged;
 
-            homeName = (TextView)FindViewById(Resource.Id.HomeName); ///Needed filter Retrieve first
+            //homeName = (TextView)FindViewById(Resource.Id.HomeName); ///Needed filter Retrieve first
 
             SaveHome.Click += SaveHome_Click;
 
@@ -112,11 +116,12 @@ namespace ShareLock
             //Home
             
             RetrievedData();
-            
-            
+            Username = Intent.GetStringExtra("userName");
+
+
             addMemberBtn.Click += AddMemberBtn_Click;
             addDoorLockBtn.Click += AddDoorLockBtn_Click;
-            editHome.Click += EditHome_Click;
+            //editHome.Click += EditHome_Click;
             searchHomeButton.Click += SearchHomeButton_Click;
         }
 
@@ -261,7 +266,17 @@ namespace ShareLock
         private void DoorLockListener_DoorLockRetrived(object sender, DoorLockListener.DoorLockDataEventArgs e)
         {
             doorLockList = e.DoorLock;
+            FilterDoorLocks();
             SetUpDoorLockRecycler();
+        }
+
+        private void FilterDoorLocks()
+        {
+            List<DoorLock> filterLocks = (from doorlock in doorLockList
+                                          where doorlock.Username.Contains(ActiveUser.username)
+                                          select doorlock).ToList();
+            doorLockAdapter = new DoorLockAdapter(filterLocks);
+            doorLockRecyle.SetAdapter(doorLockAdapter);
         }
 
         private void SetUpDoorLockRecycler()
@@ -300,7 +315,10 @@ namespace ShareLock
 
         private void DoorLockAdapter_ItemClick(object sender, DoorLockAdapterClickEventArgs e)
         {
-            throw new NotImplementedException();
+            DoorLock thisDoorLock = doorLockList[e.Position];
+            EditDoorLockFragment editDoorLockFragment = new EditDoorLockFragment(thisDoorLock);
+            var trans = SupportFragmentManager.BeginTransaction();
+            editDoorLockFragment.Show(trans, "edit");
         }
 
         private void MemberAdapter_ItemClick(object sender, MemberAdapterClickEventArgs e)
