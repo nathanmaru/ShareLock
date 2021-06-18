@@ -71,6 +71,7 @@
     <Compile Include="Adapter\SearchHomeAdapter.cs" />
     <Compile Include="Adapter\SubscriptionAdapter.cs" />
     <Compile Include="EventListeners\AccountListener.cs" />
+    <Compile Include="EventListeners\DoorLockListener.cs" />
     <Compile Include="EventListeners\MemberListener.cs" />
     <Compile Include="Fragments\AddDoorLockFragment.cs" />
     <Compile Include="Fragments\AddMemberFragment.cs" />
@@ -253,6 +254,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\SearchHouseItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\roundedcornerwhite.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\HomeEditLayout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

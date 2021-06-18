@@ -39,7 +39,7 @@ namespace ShareLock.Adapter
             // Replace the contents of the view with that element
             var holder = viewHolder as SearchHomeAdapterViewHolder;
             holder.HomeName.Text = items[position].HomeName;
-            //holder.HomeAddress.Text = items[position].HomeAddress;
+            holder.HomeAddress.Text = items[position].HomeAddress;
         }
 
         public override int ItemCount => items.Count;
@@ -52,7 +52,7 @@ namespace ShareLock.Adapter
     public class SearchHomeAdapterViewHolder : RecyclerView.ViewHolder
     {
         public TextView HomeName { get; set; }
-        //public TextView HomeAddress { get; set; }
+        public TextView HomeAddress { get; set; }
 
         public SearchHomeAdapterViewHolder(View itemView, Action<SearchHomeAdapterClickEventArgs> clickListener,
                             Action<SearchHomeAdapterClickEventArgs> longClickListener) : base(itemView)

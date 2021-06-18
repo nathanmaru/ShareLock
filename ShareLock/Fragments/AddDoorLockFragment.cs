@@ -35,7 +35,7 @@ namespace ShareLock.Fragments
             // Use this to return your custom view for this Fragment
             View view = inflater.Inflate(Resource.Layout.AddDoorLocksLayout, container, false);
             DoorId = (EditText)view.FindViewById(Resource.Id.doorLockId);
-            Doorname = (EditText)view.FindViewById(Resource.Id.doorNameTxt);
+            Doorname = (EditText)view.FindViewById(Resource.Id.doorLockName);
             Password = (EditText)view.FindViewById(Resource.Id.doorLockPassword);
             Addbtn = (Button)view.FindViewById(Resource.Id.addDoorLockBtn);
 

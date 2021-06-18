@@ -11,7 +11,7 @@ using System.Text;
 
 namespace ShareLock.Activities
 {
-    [Activity(Label = "GetStartedActivity", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "GetStartedActivity")]
     public class GetStartedActivity : Activity
     {
         Button signUpRedirect;

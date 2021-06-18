@@ -5,10 +5,13 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using Firebase.Database;
 using Google.Android.Material.BottomNavigation;
+using Java.Util;
 using ShareLock.Adapter;
 using ShareLock.EventListeners;
 using ShareLock.Fragments;
+using ShareLock.Helpers;
 using ShareLock.Models;
 using System;
 using System.Collections.Generic;
@@ -16,22 +19,46 @@ using Fragment = Android.Support.V4.App.Fragment;
 
 namespace ShareLock
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
         TextView textMessage;
-        RecyclerView memberRecyle;
+        TextView editHome;
+        TextView homeName;
+
+        EditText HomeName;
+        EditText HomeAddress;
+        EditText HomeBio;
+        Button SaveHome;
+
+
         MemberAdapter memberAdapter;
+        DoorLockAdapter doorLockAdapter;
+
+
         List<Members> memberList;
+        List<DoorLock> doorLockList;
+
+        RecyclerView memberRecyle;
+        RecyclerView doorLockRecyle;
+
         ImageView addMemberBtn;
-        AddMemberFragment addmemberFragment;
+        ImageView addDoorLockBtn;
+        
         MemberListener memberListener;
+        DoorLockListener doorLockListener;
+
+        AddDoorLockFragment addDoorLockFragment;
+        RequestApprovalFragment requestApprovalFragment;
+        AddMemberFragment addmemberFragment;
+
 
         LinearLayout HomePage;
         LinearLayout VisitsPage;
         LinearLayout PaymentPage;
         LinearLayout ProfilePage;
         LinearLayout NotificationPage;
+        LinearLayout HomeEditPage;
 
         ImageView profileButton;
         ImageView notificationButton;
@@ -42,10 +69,22 @@ namespace ShareLock
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
             memberRecyle = (RecyclerView)FindViewById(Resource.Id.familyMembersRecyclerView);
+            doorLockRecyle = (RecyclerView)FindViewById(Resource.Id.doorlocksRecyclerView);
             textMessage = FindViewById<TextView>(Resource.Id.message);
-            
-            
+            editHome = FindViewById<TextView>(Resource.Id.editHomeButton);
+
+            HomeName = (EditText)FindViewById(Resource.Id.homeNameTxt);
+            HomeAddress = (EditText)FindViewById(Resource.Id.homeaddressTxt);
+            HomeBio = (EditText)FindViewById(Resource.Id.homeBioText);
+            SaveHome = (Button)FindViewById(Resource.Id.saveHomeBtn);
+
+            homeName = (TextView)FindViewById(Resource.Id.HomeName); ///Needed filter Retrieve first
+
+            SaveHome.Click += SaveHome_Click;
+
             addMemberBtn = (ImageView)FindViewById(Resource.Id.addMember);
+            addDoorLockBtn = (ImageView)FindViewById(Resource.Id.addDoorLock);
+            
 
             ConnectLayoutViews();
 
@@ -59,6 +98,48 @@ namespace ShareLock
             
             
             addMemberBtn.Click += AddMemberBtn_Click;
+            addDoorLockBtn.Click += AddDoorLockBtn_Click;
+            editHome.Click += EditHome_Click;
+        }
+
+        private void SaveHome_Click(object sender, EventArgs e)
+        {
+            string homeName = HomeName.Text;
+            string homeAddress = HomeAddress.Text;
+            string homeBio = HomeBio.Text;
+
+            
+
+            HashMap homeInfo = new HashMap();
+            homeInfo.Put("HomeName", homeName); //This should be replaced by fullname
+            homeInfo.Put("HomeAddres", homeAddress);
+            homeInfo.Put("HomeBio", homeBio);
+            
+                DatabaseReference newNoteRef = AppDataHelper.GetDatabase().GetReference("homeInfo").Push();
+                newNoteRef.SetValue(homeInfo);
+                Toast.MakeText(SaveHome.Context, "Home Save!", ToastLength.Short).Show();
+
+            HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
+            HomePage.Visibility = Android.Views.ViewStates.Visible;
+        }
+
+        private void EditHome_Click(object sender, EventArgs e)
+        {
+            //Check if This is Home is not null first;
+            HomePage.Visibility = Android.Views.ViewStates.Gone;
+            VisitsPage.Visibility = Android.Views.ViewStates.Gone;
+            PaymentPage.Visibility = Android.Views.ViewStates.Gone;
+            ProfilePage.Visibility = Android.Views.ViewStates.Gone;
+            NotificationPage.Visibility = Android.Views.ViewStates.Gone;
+            HomeEditPage.Visibility = Android.Views.ViewStates.Visible;
+            textMessage.Text = "Home Edit";
+        }
+
+        private void AddDoorLockBtn_Click(object sender, EventArgs e)
+        {
+            addDoorLockFragment = new AddDoorLockFragment();
+            var trans = SupportFragmentManager.BeginTransaction();
+            addDoorLockFragment.Show(trans, "new door lock");
         }
 
         private void ConnectLayoutViews()
@@ -70,6 +151,7 @@ namespace ShareLock
             NotificationPage = (LinearLayout)FindViewById(Resource.Id.NotificationLayout);
             profileButton = (ImageView)FindViewById(Resource.Id.profile);
             notificationButton = (ImageView)FindViewById(Resource.Id.notification);
+            HomeEditPage = (LinearLayout)FindViewById(Resource.Id.EditHomeLayout);
 
             profileButton.Click += ProfileButton_Click;
             notificationButton.Click += NotificationButton_Click;
@@ -82,6 +164,7 @@ namespace ShareLock
             PaymentPage.Visibility = Android.Views.ViewStates.Gone;
             ProfilePage.Visibility = Android.Views.ViewStates.Gone;
             NotificationPage.Visibility = Android.Views.ViewStates.Visible;
+            HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
             textMessage.Text = "Notifications";
         }
 
@@ -92,6 +175,7 @@ namespace ShareLock
             PaymentPage.Visibility = Android.Views.ViewStates.Gone;
             ProfilePage.Visibility = Android.Views.ViewStates.Visible;
             NotificationPage.Visibility = Android.Views.ViewStates.Gone;
+            HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
             textMessage.Text = "Profile";
         }
 
@@ -100,6 +184,25 @@ namespace ShareLock
             memberListener = new MemberListener();
             memberListener.Create();
             memberListener.MemberRetrived += MemberListener_MemberRetrived;
+
+            doorLockListener = new DoorLockListener();
+            doorLockListener.Create();
+            doorLockListener.DoorLockRetrived += DoorLockListener_DoorLockRetrived;
+        }
+
+        private void DoorLockListener_DoorLockRetrived(object sender, DoorLockListener.DoorLockDataEventArgs e)
+        {
+            doorLockList = e.DoorLock;
+            SetUpDoorLockRecycler();
+        }
+
+        private void SetUpDoorLockRecycler()
+        {
+            doorLockRecyle.SetLayoutManager(new Android.Support.V7.Widget.LinearLayoutManager(doorLockRecyle.Context, LinearLayoutManager.Horizontal, false));
+            doorLockAdapter = new DoorLockAdapter(doorLockList);
+
+            doorLockAdapter.ItemClick += DoorLockAdapter_ItemClick;
+            doorLockRecyle.SetAdapter(doorLockAdapter);
         }
 
         private void MemberListener_MemberRetrived(object sender, MemberListener.MemberDataEventArgs e)
@@ -123,6 +226,13 @@ namespace ShareLock
 
             memberAdapter.ItemClick += MemberAdapter_ItemClick;
             memberRecyle.SetAdapter(memberAdapter);
+
+            
+        }
+
+        private void DoorLockAdapter_ItemClick(object sender, DoorLockAdapterClickEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void MemberAdapter_ItemClick(object sender, MemberAdapterClickEventArgs e)
@@ -146,6 +256,7 @@ namespace ShareLock
                     PaymentPage.Visibility = Android.Views.ViewStates.Gone;
                     ProfilePage.Visibility = Android.Views.ViewStates.Gone;
                     NotificationPage.Visibility = Android.Views.ViewStates.Gone;
+                    HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_home);
                     return true;
                 case Resource.Id.navigation_dashboard:
@@ -154,6 +265,7 @@ namespace ShareLock
                     PaymentPage.Visibility = Android.Views.ViewStates.Gone;
                     ProfilePage.Visibility = Android.Views.ViewStates.Gone;
                     NotificationPage.Visibility = Android.Views.ViewStates.Gone;
+                    HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_dashboard);
                     return true;
                 case Resource.Id.navigation_notifications:
@@ -162,6 +274,7 @@ namespace ShareLock
                     PaymentPage.Visibility = Android.Views.ViewStates.Visible;
                     ProfilePage.Visibility = Android.Views.ViewStates.Gone;
                     NotificationPage.Visibility = Android.Views.ViewStates.Gone;
+                    HomeEditPage.Visibility = Android.Views.ViewStates.Gone;
                     textMessage.SetText(Resource.String.title_notifications);
                     return true;
             }
