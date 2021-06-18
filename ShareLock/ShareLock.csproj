@@ -77,6 +77,7 @@
     <Compile Include="EventListeners\RequestListener.cs" />
     <Compile Include="Fragments\AddDoorLockFragment.cs" />
     <Compile Include="Fragments\AddMemberFragment.cs" />
+    <Compile Include="Fragments\CreateRequestFragment.cs" />
     <Compile Include="Fragments\EditDoorLockFragment.cs" />
     <Compile Include="Fragments\RequestApprovalFragment.cs" />
     <Compile Include="Helpers\AppDataHelper.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Models\Members.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\SubscriptionPlan.cs" />
+    <Compile Include="RandomPassword.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -266,6 +268,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\HomeEditLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SendRequest.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

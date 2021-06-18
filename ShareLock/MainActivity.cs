@@ -61,6 +61,7 @@ namespace ShareLock
         AddDoorLockFragment addDoorLockFragment;
         //RequestApprovalFragment requestApprovalFragment;
         AddMemberFragment addmemberFragment;
+        CreateRequestFragment createRequestFragment;
 
 
         LinearLayout HomePage;
@@ -113,11 +114,14 @@ namespace ShareLock
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
 
-            //Home
             
+            //Home
+
             RetrievedData();
             Username = Intent.GetStringExtra("userName");
-
+            
+            //SetupSearchHomeRecycler();
+            
 
             addMemberBtn.Click += AddMemberBtn_Click;
             addDoorLockBtn.Click += AddDoorLockBtn_Click;
@@ -257,15 +261,17 @@ namespace ShareLock
 
         private void SearchHomeAdapter_ItemClick(object sender, SearchHomeAdapterClickEventArgs e)
         {
-            
+            DoorLock thisDoorLock = doorLockList[e.Position];
+            createRequestFragment = new CreateRequestFragment(thisDoorLock);
+            var trans = SupportFragmentManager.BeginTransaction();
+            createRequestFragment.Show(trans, "new request");
         }
 
         private void DoorLockListener_DoorLockRetrived(object sender, DoorLockListener.DoorLockDataEventArgs e)
         {
             doorLockList = e.DoorLock;
-            FilterDoorLocks();
             SetUpDoorLockRecycler();
-            SetupSearchHomeRecycler();
+            FilterDoorLocks();
         }
 
         private void FilterDoorLocks()
@@ -274,16 +280,17 @@ namespace ShareLock
                                           where doorlock.Username.Contains(ActiveUser.username)
                                           select doorlock).ToList();
             doorLockAdapter = new DoorLockAdapter(filterLocks);
-            doorLockRecyle.SetAdapter(doorLockAdapter);
+
         }
 
         private void SetUpDoorLockRecycler()
         {
             doorLockRecyle.SetLayoutManager(new Android.Support.V7.Widget.LinearLayoutManager(doorLockRecyle.Context));
             doorLockAdapter = new DoorLockAdapter(doorLockList);
-
-            doorLockAdapter.ItemClick += DoorLockAdapter_ItemClick;
+            
             doorLockRecyle.SetAdapter(doorLockAdapter);
+            doorLockAdapter.ItemClick += DoorLockAdapter_ItemClick;
+            
         }
 
         private void MemberListener_MemberRetrived(object sender, MemberListener.MemberDataEventArgs e)

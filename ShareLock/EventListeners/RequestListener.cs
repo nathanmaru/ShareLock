@@ -41,6 +41,7 @@ namespace ShareLock.EventListeners
                     request.DoorLockId = memberData.Child("DoorLockID").Value.ToString();
                     request.Fullname = memberData.Child("Fullname").Value.ToString();
                     request.Message = memberData.Child("Message").Value.ToString();
+                    request.OwnerUsername = memberData.Child("OwnerUsername").Value.ToString();
                     request.isApprove = memberData.Child("isApprove").Value.ToString();
                     request.UserID = memberData.Child("UserID").Value.ToString();
                     request.OneTimePassword = memberData.Child("OTP").Value.ToString();
